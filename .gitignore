@@ -1,0 +1,15 @@
+# Variables d'environnement : contient les mots de passe, ne jamais publier
+.env
+
+# Dépendances téléchargées (se réinstallent)
+/vendor/
+node_modules/
+
+# Fichiers système et d'éditeur
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Journaux
+*.log
