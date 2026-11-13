@@ -1,0 +1,11 @@
+# Fins de ligne au format Linux (LF) pour tous les fichiers texte
+* text=auto eol=lf
+
+# Fichiers binaires : ne jamais les modifier
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary

@@ -1,0 +1,18 @@
+# Réglages communs à tous les éditeurs du groupe
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# PHP : 4 espaces (norme PSR-12)
+[*.php]
+indent_size = 4
+
+# Markdown : les espaces en fin de ligne peuvent servir de retour à la ligne
+[*.md]
+trim_trailing_whitespace = false

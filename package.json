@@ -1,0 +1,34 @@
+{
+  "name": "h-teach",
+  "version": "1.0.0",
+  "description": "Projet Web Desingn et Infographie MIAGE Licence 2 - Mise en relation des parents, enseignants à domicile et structure de placement des enseignants",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint frontend/js",
+    "format": "prettier --write frontend",
+    "format:check": "prettier --check frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/legendaire95/H-teach.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/legendaire95/H-teach/issues"
+  },
+  "homepage": "https://github.com/legendaire95/H-teach#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1"
+  }
+}

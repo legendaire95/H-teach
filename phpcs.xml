@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ruleset name="H-teach">
+  <description>Règles de style PHP du projet H-teach (norme PSR-12)</description>
+
+  <!-- Dossier à analyser -->
+  <file>backend</file>
+
+  <!-- Analyser uniquement les fichiers .php, afficher en couleur et montrer la progression -->
+  <arg name="extensions" value="php"/>
+  <arg name="colors"/>
+  <arg value="p"/>
+
+  <!-- Norme officielle de style PHP -->
+  <rule ref="PSR12"/>
+</ruleset>

@@ -1,0 +1,15 @@
+{
+  "name": "legendaire95/h-teach",
+  "description": "H-teach - mise en relation parents, enseignants et structure de placement",
+  "type": "project",
+  "require": {
+    "php": ">=8.1"
+  },
+  "scripts": {
+    "lint": "phpcs",
+    "lint:fix": "phpcbf"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^4.0"
+  }
+}
