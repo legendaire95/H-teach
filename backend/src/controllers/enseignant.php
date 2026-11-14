@@ -116,3 +116,76 @@ function listerEtudiants(): void
 
     repondreJson($requete->fetchAll());
 }
+
+/**
+ * GET /api/enseignant/offres : offres ouvertes qui correspondent au profil de l'enseignant (écran 16).
+ */
+function listerOffresDisponibles(): void
+{
+    $enseignant = exigerConnexion('enseignant');
+
+    $requete = connexionBdd()->prepare(
+        "SELECT o.id, n.libelle AS niveau, o.serie, o.ville, o.commune,
+                o.budget_min, o.budget_max, o.cree_le,
+                (SELECT GROUP_CONCAT(m.libelle ORDER BY m.libelle SEPARATOR ', ')
+                   FROM offre_matieres om
+                   JOIN matieres m ON m.id = om.matiere_id
+                  WHERE om.offre_id = o.id) AS matieres,
+                EXISTS (SELECT 1 FROM candidatures c
+                         WHERE c.offre_id = o.id AND c.enseignant_id = :e1) AS deja_postule
+           FROM offres o
+           JOIN niveaux n ON n.id = o.niveau_id
+          WHERE o.statut = 'ouverte'
+            AND o.niveau_id IN (SELECT niveau_id FROM niveaux_enseignant WHERE enseignant_id = :e2)
+            AND EXISTS (SELECT 1
+                          FROM offre_matieres om
+                          JOIN matieres_enseignant me ON me.matiere_id = om.matiere_id
+                         WHERE om.offre_id = o.id AND me.enseignant_id = :e3)
+          ORDER BY o.cree_le DESC"
+    );
+    $requete->execute(['e1' => $enseignant['id'], 'e2' => $enseignant['id'], 'e3' => $enseignant['id']]);
+
+    $offres = array_map(function (array $offre): array {
+        $offre['deja_postule'] = (bool) $offre['deja_postule'];
+        return $offre;
+    }, $requete->fetchAll());
+
+    repondreJson($offres);
+}
+
+/**
+ * POST /api/candidatures : l'enseignant connecté postule à une offre.
+ */
+function postuler(): void
+{
+    $enseignant = exigerConnexion('enseignant');
+    $donnees = lireCorpsJson();
+    $offreId = filter_var($donnees['offre_id'] ?? null, FILTER_VALIDATE_INT);
+    $pdo = connexionBdd();
+
+    $requete = $pdo->prepare('SELECT statut FROM offres WHERE id = ?');
+    $requete->execute([$offreId === false ? 0 : $offreId]);
+    $statut = $requete->fetchColumn();
+
+    if ($statut === false) {
+        repondreJson(['erreur' => 'Cette offre est introuvable.'], 404);
+        return;
+    }
+    if ($statut !== 'ouverte') {
+        repondreJson(['erreur' => "Cette offre n'est plus disponible."], 409);
+        return;
+    }
+
+    try {
+        $pdo->prepare('INSERT INTO candidatures (offre_id, enseignant_id) VALUES (?, ?)')
+            ->execute([$offreId, $enseignant['id']]);
+    } catch (PDOException $erreur) {
+        if ($erreur->getCode() === '23000') {
+            repondreJson(['erreur' => 'Vous avez déjà postulé à cette offre.'], 409);
+            return;
+        }
+        throw $erreur;
+    }
+
+    repondreJson(['message' => 'Candidature envoyée.'], 201);
+}

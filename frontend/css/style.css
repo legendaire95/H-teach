@@ -681,3 +681,41 @@ fieldset {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Offres disponibles (écran 16) --- */
+.carte-offre {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 22px;
+}
+
+.entete-offre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.entete-offre p {
+  color: var(--gris);
+  font-size: 14px;
+}
+
+.actions-carte {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge-succes {
+  background: var(--vert-clair);
+  color: var(--vert);
+}
+
+@media (max-width: 900px) {
+  .entete-offre {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -45,6 +45,8 @@ try {
         'PUT /api/enseignant/profil'    => enregistrerProfilEnseignant(),
         'GET /api/enseignant/etudiants' => listerEtudiants(),
 
+        'GET /api/enseignant/offres' => listerOffresDisponibles(),
+        'POST /api/candidatures'     => postuler(),
         default             => repondreJson(['erreur' => 'Route introuvable'], 404),
     };
 } catch (Throwable $e) {
