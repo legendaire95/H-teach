@@ -1,0 +1,196 @@
+/* =========================================================
+   H-teach - feuille de style commune
+   Charte reprise des maquettes Figma (police Inter)
+   ========================================================= */
+
+/* --- Variables de la charte --- */
+:root {
+  --bleu: #2557d6; /* actions, onglet actif, cases cochées */
+  --bleu-clair: #eef3ff;
+  --orange: #f07b1d; /* accent : étapes, tutoriel */
+  --orange-clair: #fff1e6;
+  --texte: #0f1b3d; /* bleu nuit */
+  --texte-doux: #56637f;
+  --gris: #6b7898;
+  --bordure: #cbd3e3;
+  --bordure-claire: #e3e8f2;
+  --fond: #f5f7fb;
+  --blanc: #ffffff;
+  --vert: #1e9e5a;
+  --vert-clair: #e3f7ec;
+  --rouge: #c62828;
+  --rouge-clair: #fdecea;
+  --rayon: 10px;
+  --ombre: 0 4px 16px rgba(15, 27, 61, 0.06);
+}
+
+/* --- Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  color: var(--texte);
+  background: var(--fond);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+a {
+  color: var(--bleu);
+}
+
+/* --- Mise en page --- */
+.centre {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+}
+
+.logo {
+  color: var(--bleu);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.sous-titre {
+  color: var(--texte-doux);
+  font-size: 16px;
+  max-width: 620px;
+}
+
+/* --- Boutons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: var(--rayon);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-principal {
+  background: var(--bleu);
+  color: var(--blanc);
+  box-shadow: 0 4px 12px rgba(37, 87, 214, 0.25);
+}
+
+.btn-principal:hover {
+  background: #1d47b3;
+}
+
+.btn-secondaire {
+  background: var(--blanc);
+  color: var(--texte);
+  border-color: var(--bordure);
+}
+
+.btn-grand {
+  height: 54px;
+  padding: 0 32px;
+  font-size: 17px;
+}
+
+.btn-large {
+  width: 100%;
+}
+
+/* --- Cartes --- */
+.carte {
+  background: var(--blanc);
+  border: 1px solid var(--bordure-claire);
+  border-radius: 14px;
+  box-shadow: var(--ombre);
+  padding: 24px;
+}
+
+/* --- Formulaires --- */
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 540px;
+  text-align: left;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.champ label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.champ input,
+.champ select {
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  background: var(--blanc);
+}
+
+.champ input:focus,
+.champ select:focus {
+  outline: 2px solid var(--bleu-clair);
+  border-color: var(--bleu);
+}
+
+.erreur-champ {
+  color: var(--rouge);
+  font-size: 13px;
+}
+
+.message-erreur {
+  background: var(--rouge-clair);
+  color: var(--rouge);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.message-succes {
+  background: var(--vert-clair);
+  color: var(--vert);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+[hidden] {
+  display: none !important;
+}
