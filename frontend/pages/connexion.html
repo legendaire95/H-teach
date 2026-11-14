@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>H-teach – Connexion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="module" src="../js/connexion.js"></script>
+  </head>
+  <body>
+    <main class="centre">
+      <form id="formulaire-connexion" class="carte formulaire" style="max-width: 420px" novalidate>
+        <p class="logo">H-teach</p>
+        <h2>Connexion</h2>
+
+        <div class="champ">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="exemple@mail.com"
+            autocomplete="email"
+            required
+          />
+        </div>
+        <div class="champ">
+          <label for="mot_de_passe">Mot de passe</label>
+          <input
+            id="mot_de_passe"
+            name="mot_de_passe"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+        </div>
+
+        <p id="message-erreur" class="message-erreur" hidden></p>
+
+        <button type="submit" class="btn btn-principal btn-large">Se connecter</button>
+
+        <p>Pas encore de compte ? <a href="inscription.html">S'inscrire</a></p>
+      </form>
+    </main>
+  </body>
+</html>
