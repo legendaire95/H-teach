@@ -247,7 +247,7 @@ Toutes les routes renvoient du JSON. Les routes protégées vérifient la sessio
 ## Documentation
 
 - **Fiches ADR (choix techniques) :** [docs/adr](docs/adr/README.md)
-- **Wireframes et maquettes (Figma) :** [H-teach — Wireframes & Maquettes](https://www.figma.com/design/da1gr3DCQrb3DFyQrYOxlk) (page 1 : wireframes, page 2 : maquettes)
+- **Wireframes et maquettes (Figma) :** [maquettes Figma de H-teach](https://www.figma.com/design/pQJCYlPN5M75bDJOEK8H0P) (page 1 : wireframes, page 2 : maquettes)
 
 ## Améliorations et perspectives pour H-teach
 
@@ -255,11 +255,69 @@ Toutes les routes renvoient du JSON. Les routes protégées vérifient la sessio
 
 ### Améliorations apportées pendant le projet
 
-- …
+Nous prévoyons faire de H-teach une application à grande échelle et la rendre accessible à plusieurs personnes. Pour cela, nous prévoyons les améliorations futures suivantes:
+- Ajout d'une autre entité "Structure" afin de rendre l'application utilisable par plusieurs agences de placement et aporter de la concurrence.
+- Organisation de compétitions entre entreprises et enseignants pour voir qui sera le meilleur sur une période donnée (évenement).
+- Ajout d'un modèle de Machine Learning pour conseiller les utilisateurs et leur permettre de s'adapter à l'offre et la demande du marché.
 
 ### Perspectives
 
-- …
+- E. PHASE DE DÉVELOPPEMENT (VERSION 3) — ÉCARTS ET AJOUTS PAR RAPPORT AUX MAQUETTES
+---------------------------------------------------------------------
+
+Changements demandés par le groupe (répercutés dans Figma, le PDF et les livrables)
+E1. Niveaux scolaires : de CP1 à Terminale (CP1, CP2, CE1, CE2, CM1, CM2, 6e, 5e, 4e, 3e,
+    Seconde, Première, Terminale). Le niveau « Université » a été retiré.
+    Écran 14 : la grille « Niveaux enseignés » liste ces 13 niveaux (cases à cocher).
+E2. Série du second cycle : A, B, C, D, E, F ou G, demandée uniquement pour la Seconde,
+    la Première et la Terminale (écran 09 : champ « Série » ; écrans 12, 16 à 19 : « Terminale D »,
+    « Seconde C »). Côté serveur, la série est obligatoire pour ces niveaux et ignorée pour les autres.
+E3. Formulaire Professeur (écran 04) : « Années d'expérience » et « Niveau d'études » sont des
+    choix uniques (boutons radio ronds) et non des cases à cocher : un enseignant n'a qu'une valeur
+    pour chacun. Le libellé de l'écran 04 a été ajusté.
+
+Ajouts faits pendant le développement (non dessinés dans les maquettes)
+E4. Après l'inscription, l'utilisateur est connecté automatiquement (pas besoin de repasser par
+    l'écran 02). Le parent est envoyé vers l'accueil et le tutoriel (écrans 05 à 07) ; ce tutoriel
+    s'affiche après l'inscription, pas à chaque connexion.
+E5. Espace parent : en plus de « Mes répétiteurs », une section « Mes offres en attente » montre
+    les offres créées mais pas encore attribuées (badge « En attente »).
+E6. Bouton « Contacter » (parent → répétiteur) et « Contacter le parent » (enseignant → parent) :
+    lien e-mail (mailto). Aucune messagerie interne n'a été développée.
+E7. Espace enseignant : bouton « Modifier mon profil » pour revenir à l'écran 14 et changer ses
+    matières et niveaux.
+E8. Offres disponibles (écran 16) : seules les offres qui correspondent à au moins une matière ET au
+    niveau enseignés par l'enseignant s'affichent ; une offre à laquelle il a déjà postulé est signalée.
+E9. Bouton « Détails » (écran 16) : déplie les informations de l'offre sous la carte (bouton
+    « Masquer » pour replier), au lieu d'ouvrir un écran séparé.
+E10. Espace structure (écran 18) :
+     - « Premier arrivé » et « Expérience » trient les candidats et mettent en avant le premier
+       (ligne suggérée) ;
+     - « Politique de l'entreprise » : interprétation retenue = aucun tri automatique (ordre
+       d'arrivée affiché), l'administrateur choisit selon la politique de l'agence ;
+     - une confirmation est demandée avant d'attribuer, car la décision est définitive.
+E11. Comptes administrateur : pas d'inscription publique (conforme à C2). Ils sont créés avec le
+     script backend/scripts/creer-admin.php ou fournis par les données de démonstration.
+E12. Données de démonstration (database/seed.sql) : 1 administrateur, 3 parents, 3 enseignants,
+     3 offres, 5 candidatures et 1 attribution, reprenant les personnes et offres fictives des
+     maquettes (voir B14 et C4). Mots de passe de démo indiqués dans le README.
+E13. Encodage : les scripts SQL commencent par « SET NAMES utf8mb4; » pour que les accents
+     s'importent correctement, même depuis la ligne de commande.
+E14. Sécurité et qualité (non visibles dans les maquettes) : mots de passe hachés, requêtes
+     préparées, contrôle du rôle sur chaque route, échappement HTML côté client, linters
+     ESLint / Prettier / PHP_CodeSniffer (PSR-12). Détail dans le README.
+
+---------------------------------------------------------------------
+F. LIVRABLE 2 — AJOUT DES FICHES ADR (VERSION 3)
+---------------------------------------------------------------------
+
+F1. Le Livrable 2 intègre désormais la section 4 « Architecture : fiches ADR » (ADR 001 : stack
+    front-end et back-end ; ADR 002 : base de données), reprise des fiches rédigées par
+    Gadedjisso Mickaël et Souanga David (docs/adr/ du dépôt), en version condensée.
+    Le titre du livrable devient « Conception UX/UI & Architecture », comme la phase 2 du TD.
+F2. Correction factuelle dans l'ADR 001 : « équipe de 3 à 4 étudiants » remplacé par « équipe de
+    5 étudiants » (tableau Équipe du README). Aucun autre changement de fond dans les fiches.
+
 
 ## Équipe
 
