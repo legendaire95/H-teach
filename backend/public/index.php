@@ -24,6 +24,7 @@ if (!str_starts_with($chemin, '/api/')) {
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../src/http.php';
 require_once __DIR__ . '/../src/controllers/referentiels.php';
+require_once __DIR__ . '/../src/controllers/enseignant.php';
 
 $route = $_SERVER['REQUEST_METHOD'] . ' ' . $chemin;
 
@@ -39,6 +40,10 @@ try {
 
         'GET /api/parent/offres' => listerOffresParent(),
         'POST /api/offres' => creerOffre(),
+
+        'GET /api/enseignant/profil'    => lireProfilEnseignant(),
+        'PUT /api/enseignant/profil'    => enregistrerProfilEnseignant(),
+        'GET /api/enseignant/etudiants' => listerEtudiants(),
 
         default             => repondreJson(['erreur' => 'Route introuvable'], 404),
     };

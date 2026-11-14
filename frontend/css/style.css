@@ -634,3 +634,50 @@ a {
   font-size: 30px;
   font-weight: 800;
 }
+
+/* --- Espace enseignant : profil (écran 14) --- */
+fieldset {
+  min-width: 0;
+}
+
+.cartes-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.panneau {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.titre-panneau {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.grille-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.titre-ligne {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.actions-droite {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .cartes-2 {
+    grid-template-columns: 1fr;
+  }
+}

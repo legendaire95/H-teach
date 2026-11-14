@@ -1,17 +1,8 @@
 import { requeteJson, echapperHtml } from "./api.js";
 import { chargerEntete } from "./entete.js";
+import { titreOffre, formaterBudget } from "./format.js";
 
 /** Décrit une offre en une ligne : "Mathématiques, Physique-Chimie — Terminale D". */
-function titreOffre(offre) {
-  const niveau = offre.serie ? `${offre.niveau} ${offre.serie}` : offre.niveau;
-  return `${echapperHtml(offre.matieres)} — ${echapperHtml(niveau)}`;
-}
-
-function formaterBudget(offre) {
-  const min = Number(offre.budget_min).toLocaleString("fr-FR");
-  const max = Number(offre.budget_max).toLocaleString("fr-FR");
-  return `${min} à ${max} FCFA / mois`;
-}
 
 function carteRepetiteur(offre) {
   const enseignant = [offre.enseignant_prenom, offre.enseignant_nom].filter(Boolean).join(" ");

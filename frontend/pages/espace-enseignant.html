@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>H-teach – Espace enseignant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="module" src="../js/espace-enseignant.js"></script>
+  </head>
+  <body>
+    <header id="entete"></header>
+
+    <main class="page">
+      <!-- Écran 14 : profil (matières et niveaux) -->
+      <section id="vue-profil" class="formulaire formulaire-large" hidden>
+        <h1 id="titre-profil">Complétez votre profil</h1>
+        <p class="sous-titre">
+          Indiquez vos matières et les niveaux que vous enseignez pour accéder aux offres des
+          parents.
+        </p>
+
+        <form id="formulaire-profil" class="formulaire formulaire-large" novalidate>
+          <div class="cartes-2">
+            <fieldset class="carte panneau">
+              <div class="titre-panneau"><span class="numero">1</span> Matières enseignées</div>
+              <div id="grille-matieres" class="grille-choix grille-3"></div>
+            </fieldset>
+            <fieldset class="carte panneau">
+              <div class="titre-panneau"><span class="numero">2</span> Niveaux enseignés</div>
+              <div id="grille-niveaux" class="grille-choix grille-3"></div>
+            </fieldset>
+          </div>
+
+          <p id="message-erreur" class="message-erreur" hidden></p>
+
+          <div class="actions-droite">
+            <button type="submit" class="btn btn-principal">Enregistrer mon profil</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Écran 15 : mes étudiants -->
+      <section id="vue-etudiants" class="formulaire formulaire-large" hidden>
+        <div class="titre-ligne">
+          <h1>Mes étudiants</h1>
+          <button type="button" id="bouton-modifier-profil" class="btn btn-secondaire">
+            Modifier mon profil
+          </button>
+        </div>
+        <p class="sous-titre">Les élèves qui vous sont attribués par la structure.</p>
+
+        <div id="liste-etudiants" class="liste"></div>
+
+        <div id="etat-vide" class="etat-vide" hidden>
+          <div class="icone">∅</div>
+          <h2>Aucun étudiant pour l'instant</h2>
+          <p>Consultez l'onglet « Offres disponibles » pour postuler.</p>
+          <a href="offres-disponibles.html" class="btn btn-principal"
+            >Voir les offres disponibles</a
+          >
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
