@@ -310,11 +310,11 @@ B2. Correction factuelle dans l'ADR 001 : « équipe de 3 à 4 étudiants » rem
 
 - H-teach est destinée à s'étendre sur une échelle plus large au fil du temps. Nous y ajouterons peu à peu de nouvelles fonctionnalités afin de rendre notre solution plus instructive et adaptée aux réalités des entreprises sur le terrain. pour cela, nous prévoyons ces différentes perspectives:
 
-1- Ajout d'une nouvelle entité "Structure" afin de scaler l'application et prendre en compte plusieurs structures de placement d'enseignants et augmenter la conccurence.
-2- Organisation de compétitions inter-entreprise avec possibilités de gagner des lots et des prix comme nommination 'meilleure' entreprise du mois...
-3- Intégration d'un modèle de Machine Learning afin d'analyser et prédire les différentes offres qui pourrait circuler sur le marché et donner des conseils d'amélioration de profils au enseignants afin d'être plus compétitifs sur le marché.
-4- Autres fonctionnalités à venir...
-Comme Perspectives
+- 1- Ajout d'une nouvelle entité "Structure" afin de scaler l'application et prendre en compte plusieurs structures de placement d'enseignants et augmenter la conccurence.
+- 2- Organisation de compétitions inter-entreprise avec possibilités de gagner des lots et des prix comme nommination 'meilleure' entreprise du mois...
+- 3- Intégration d'un modèle de Machine Learning afin d'analyser et prédire les différentes offres qui pourrait circuler sur le marché et donner des conseils d'amélioration de profils au enseignants afin d'être plus compétitifs sur le marché.
+- 4- Autres fonctionnalités à venir...
+
 
 ## Équipe
 
