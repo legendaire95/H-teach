@@ -26,3 +26,13 @@ export const PAGE_PAR_ROLE = {
   enseignant: "espace-enseignant.html",
   admin: "espace-admin.html",
 };
+
+/**
+ * Neutralise les caractères spéciaux avant d'insérer un texte dans le HTML.
+ * Empêche qu'un nom comme "<script>..." soit exécuté (faille XSS).
+ */
+export function echapperHtml(texte) {
+  const element = document.createElement("span");
+  element.textContent = texte ?? "";
+  return element.innerHTML;
+}

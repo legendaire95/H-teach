@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../src/controllers/auth.php';
+require_once __DIR__ . '/../src/controllers/parent.php';
 
 session_start([
     'cookie_httponly' => true,
@@ -35,6 +36,8 @@ try {
         'POST /api/connexion'   => connecter(),
         'GET /api/moi'          => moi(),
         'POST /api/deconnexion' => deconnecter(),
+
+        'GET /api/parent/offres' => listerOffresParent(),
 
         default             => repondreJson(['erreur' => 'Route introuvable'], 404),
     };

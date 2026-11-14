@@ -307,3 +307,155 @@ a {
   justify-content: space-between;
   margin-top: 6px;
 }
+
+/* --- En-tête des espaces connectés --- */
+#entete {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 76px;
+  padding: 0 24px;
+  background: var(--blanc);
+  border-bottom: 1px solid var(--bordure-claire);
+}
+
+.identite {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bleu);
+  color: var(--blanc);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nom-utilisateur {
+  font-weight: 600;
+}
+
+.role-utilisateur {
+  color: var(--gris);
+  font-size: 13px;
+}
+
+.onglets-entete {
+  display: flex;
+  margin-left: auto;
+}
+
+.onglet-entete {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  color: var(--gris);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.onglet-entete.actif {
+  color: var(--bleu);
+  background: var(--bleu-clair);
+  border-bottom-color: var(--bleu);
+}
+
+.onglet-entete.actif .numero {
+  background: var(--bleu);
+  color: var(--blanc);
+}
+
+#bouton-deconnexion {
+  align-self: center;
+}
+
+/* --- Contenu des espaces --- */
+.page {
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.liste {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.carte-ligne {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+}
+
+.carte-ligne p {
+  color: var(--gris);
+  font-size: 14px;
+}
+
+.etat-vide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 60px 24px;
+  text-align: center;
+  border: 1px dashed var(--bordure);
+  border-radius: 14px;
+  background: #fafbfd;
+}
+
+.etat-vide .icone {
+  color: #98a2b8;
+  font-size: 44px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--orange-clair);
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* --- En-tête : textes sur une ligne, et adaptation aux petits écrans --- */
+.onglet-entete,
+.nom-utilisateur {
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  #entete {
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+
+  .onglets-entete {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .onglet-entete {
+    flex: 1;
+    justify-content: center;
+    padding: 12px 8px;
+  }
+}

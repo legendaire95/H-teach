@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>H-teach – Mes répétiteurs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="module" src="../js/espace-parent.js"></script>
+  </head>
+  <body>
+    <header id="entete"></header>
+
+    <main class="page">
+      <h1>Mes répétiteurs</h1>
+      <p class="sous-titre">Les enseignants attribués à vos enfants par la structure.</p>
+
+      <div id="liste-repetiteurs" class="liste"></div>
+
+      <div id="etat-vide" class="etat-vide" hidden>
+        <div class="icone">∅</div>
+        <h2>Vous n'avez pas encore de répétiteur</h2>
+        <a href="nouvelle-offre.html" class="btn btn-principal btn-grand">
+          Cliquez ici pour trouver un répétiteur
+        </a>
+      </div>
+
+      <section id="section-attente" hidden>
+        <h2>Mes offres en attente</h2>
+        <p class="sous-titre">La structure compare les candidatures et vous attribuera un répétiteur.</p>
+        <div id="liste-attente" class="liste"></div>
+      </section>
+    </main>
+  </body>
+</html>
