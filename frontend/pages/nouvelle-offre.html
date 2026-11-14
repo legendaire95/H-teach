@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>H-teach – Trouver un répétiteur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="module" src="../js/nouvelle-offre.js"></script>
+  </head>
+  <body>
+    <header id="entete"></header>
+
+    <main class="page page-etroite">
+      <ol class="etapes" id="etapes">
+        <li data-etape="1"><span class="numero">1</span> Niveau + matière</li>
+        <li data-etape="2"><span class="numero">2</span> Localisation</li>
+        <li data-etape="3"><span class="numero">3</span> Budget</li>
+        <li data-etape="4"><span class="numero">4</span> Récapitulatif</li>
+      </ol>
+
+      <form id="formulaire-offre" class="carte formulaire formulaire-large" novalidate>
+        <!-- Étape 1 : niveau, série, matières (écran 09) -->
+        <section data-etape="1" class="formulaire formulaire-large">
+          <h2>Quel est le niveau de votre enfant ?</h2>
+          <div class="champ">
+            <label for="niveau_id">Niveau de l'élève</label>
+            <select id="niveau_id" name="niveau_id">
+              <option value="">Choisissez un niveau</option>
+            </select>
+          </div>
+
+          <fieldset id="bloc-serie" class="groupe" hidden disabled>
+            <legend>Série</legend>
+            <div class="grille-choix grille-series">
+              <label class="choix"
+                ><input type="radio" name="serie" value="A" /><span>A</span></label
+              >
+              <label class="choix"
+                ><input type="radio" name="serie" value="B" /><span>B</span></label
+              >
+              <label class="choix"
+                ><input type="radio" name="serie" value="C" /><span>C</span></label
+              >
+              <label class="choix"
+                ><input type="radio" name="serie" value="D" /><span>D</span></label
+              >
+              <label class="choix"
+                ><input type="radio" name="serie" value="E" /><span>E</span></label
+              >
+              <label class="choix"
+                ><input type="radio" name="serie" value="F" /><span>F</span></label
+              >
+              <label class="choix"
+                ><input type="radio" name="serie" value="G" /><span>G</span></label
+              >
+            </div>
+          </fieldset>
+
+          <div class="champ">
+            <label>Matières souhaitées</label>
+            <div id="grille-matieres" class="grille-choix"></div>
+          </div>
+        </section>
+
+        <!-- Étape 2 : localisation (écran 10) -->
+        <section data-etape="2" class="formulaire formulaire-large" hidden>
+          <h2>Où se dérouleront les cours ?</h2>
+          <div class="champ">
+            <label for="ville">Ville</label>
+            <input id="ville" name="ville" type="text" placeholder="Ex. : Abidjan" />
+          </div>
+          <div class="champ">
+            <label for="commune">Commune / quartier</label>
+            <input id="commune" name="commune" type="text" placeholder="Ex. : Cocody, Angré" />
+          </div>
+        </section>
+
+        <!-- Étape 3 : budget (écran 11) -->
+        <section data-etape="3" class="formulaire formulaire-large" hidden>
+          <h2>Quel est votre budget ?</h2>
+          <div class="ligne-2">
+            <div class="champ">
+              <label for="budget_min">Budget minimum (FCFA / mois)</label>
+              <input
+                id="budget_min"
+                name="budget_min"
+                type="number"
+                min="1000"
+                step="1000"
+                placeholder="Ex. : 30000"
+              />
+            </div>
+            <div class="champ">
+              <label for="budget_max">Budget maximum (FCFA / mois)</label>
+              <input
+                id="budget_max"
+                name="budget_max"
+                type="number"
+                min="1000"
+                step="1000"
+                placeholder="Ex. : 50000"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- Étape 4 : récapitulatif (écran 12) -->
+        <section data-etape="4" class="formulaire formulaire-large" hidden>
+          <h2>Récapitulatif de votre offre</h2>
+          <dl id="recap" class="recap"></dl>
+        </section>
+
+        <p id="message-erreur" class="message-erreur" hidden></p>
+
+        <div class="actions">
+          <button type="button" id="bouton-retour" class="btn btn-secondaire">Annuler</button>
+          <button type="button" id="bouton-suivant" class="btn btn-principal">Suivant</button>
+          <button type="submit" id="bouton-creer" class="btn btn-principal" hidden>
+            Créer l'offre
+          </button>
+        </div>
+      </form>
+
+      <!-- Confirmation (écran 13) -->
+      <section id="confirmation" class="carte confirmation" hidden>
+        <div class="icone-succes">✓</div>
+        <h2>Votre offre est en ligne</h2>
+        <p class="sous-titre">
+          Les enseignants peuvent maintenant postuler. La structure compare les candidatures et vous
+          attribue un répétiteur.
+        </p>
+        <a href="espace-parent.html" class="btn btn-principal">Retour à « Mes répétiteurs »</a>
+      </section>
+    </main>
+  </body>
+</html>

@@ -38,6 +38,7 @@ try {
         'POST /api/deconnexion' => deconnecter(),
 
         'GET /api/parent/offres' => listerOffresParent(),
+        'POST /api/offres' => creerOffre(),
 
         default             => repondreJson(['erreur' => 'Route introuvable'], 404),
     };

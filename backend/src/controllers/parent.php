@@ -29,3 +29,95 @@ function listerOffresParent(): void
 
     repondreJson($requete->fetchAll());
 }
+
+/**
+ * POST /api/offres : le parent connecté crée une offre (écrans 09 à 12).
+ */
+function creerOffre(): void
+{
+    $parent = exigerConnexion('parent');
+    $donnees = lireCorpsJson();
+
+    $niveauId = filter_var($donnees['niveau_id'] ?? null, FILTER_VALIDATE_INT);
+    $serie = $donnees['serie'] ?? null;
+    $matieres = $donnees['matieres'] ?? [];
+    $ville = trim((string) ($donnees['ville'] ?? ''));
+    $commune = trim((string) ($donnees['commune'] ?? ''));
+    $optionsBudget = ['options' => ['min_range' => 1]];
+    $budgetMin = filter_var($donnees['budget_min'] ?? null, FILTER_VALIDATE_INT, $optionsBudget);
+    $budgetMax = filter_var($donnees['budget_max'] ?? null, FILTER_VALIDATE_INT, $optionsBudget);
+
+    $pdo = connexionBdd();
+    $erreurs = [];
+
+    // Niveau, et série obligatoire seulement pour Seconde, Première et Terminale
+    $niveau = false;
+    if ($niveauId !== false) {
+        $requete = $pdo->prepare('SELECT libelle FROM niveaux WHERE id = ?');
+        $requete->execute([$niveauId]);
+        $niveau = $requete->fetchColumn();
+    }
+
+    if ($niveau === false) {
+        $erreurs['niveau_id'] = 'Choisissez un niveau valide.';
+    } elseif (in_array($niveau, ['Seconde', 'Première', 'Terminale'], true)) {
+        if (!in_array($serie, ['A', 'B', 'C', 'D', 'E', 'F', 'G'], true)) {
+            $erreurs['serie'] = 'Choisissez la série.';
+        }
+    } else {
+        $serie = null;
+    }
+
+    // Matières : au moins une, et toutes doivent exister
+    if (!is_array($matieres) || $matieres === []) {
+        $erreurs['matieres'] = 'Choisissez au moins une matière.';
+    } else {
+        $matieres = array_values(array_unique(array_map('intval', $matieres)));
+        $marqueurs = implode(',', array_fill(0, count($matieres), '?'));
+        $requete = $pdo->prepare("SELECT COUNT(*) FROM matieres WHERE id IN ($marqueurs)");
+        $requete->execute($matieres);
+
+        if ((int) $requete->fetchColumn() !== count($matieres)) {
+            $erreurs['matieres'] = 'Une des matières choisies est inconnue.';
+        }
+    }
+
+    if ($ville === '' || $commune === '') {
+        $erreurs['localisation'] = 'Indiquez la ville et la commune.';
+    }
+
+    if ($budgetMin === false || $budgetMax === false) {
+        $erreurs['budget'] = 'Indiquez un budget minimum et un budget maximum valides.';
+    } elseif ($budgetMin > $budgetMax) {
+        $erreurs['budget'] = 'Le budget minimum doit être inférieur ou égal au budget maximum.';
+    }
+
+    if ($erreurs !== []) {
+        repondreJson(['erreurs' => $erreurs], 422);
+        return;
+    }
+
+    // Enregistrement de l'offre et de ses matières, en une seule transaction
+    $pdo->beginTransaction();
+
+    try {
+        $requete = $pdo->prepare(
+            'INSERT INTO offres (parent_id, niveau_id, serie, ville, commune, budget_min, budget_max)
+             VALUES (?, ?, ?, ?, ?, ?, ?)'
+        );
+        $requete->execute([$parent['id'], $niveauId, $serie, $ville, $commune, $budgetMin, $budgetMax]);
+        $offreId = (int) $pdo->lastInsertId();
+
+        $requete = $pdo->prepare('INSERT INTO offre_matieres (offre_id, matiere_id) VALUES (?, ?)');
+        foreach ($matieres as $matiereId) {
+            $requete->execute([$offreId, $matiereId]);
+        }
+
+        $pdo->commit();
+    } catch (Throwable $erreur) {
+        $pdo->rollBack();
+        throw $erreur;
+    }
+
+    repondreJson(['id' => $offreId], 201);
+}

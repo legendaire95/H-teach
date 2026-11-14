@@ -534,3 +534,103 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Formulaire en plusieurs étapes --- */
+.page-etroite {
+  max-width: 760px;
+}
+
+.formulaire-large {
+  max-width: none;
+}
+
+.etapes {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+}
+
+.etapes li {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--bordure-claire);
+  border-radius: 8px;
+  background: var(--blanc);
+  color: var(--gris);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.etapes li.actif {
+  color: var(--bleu);
+  border-color: #b8cbf5;
+  background: var(--bleu-clair);
+}
+
+.etapes li.actif .numero {
+  background: var(--bleu);
+  color: var(--blanc);
+}
+
+.grille-series {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.ligne-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.recap {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--bordure-claire);
+  border-radius: var(--rayon);
+  background: var(--fond);
+}
+
+.recap div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+.recap div + div {
+  border-top: 1px solid var(--bordure-claire);
+}
+
+.recap dt {
+  color: var(--gris);
+}
+
+.recap dd {
+  font-weight: 700;
+  text-align: right;
+}
+
+.confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.icone-succes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--vert-clair);
+  color: var(--vert);
+  font-size: 30px;
+  font-weight: 800;
+}
