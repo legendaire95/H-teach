@@ -1,13 +1,9 @@
 import { requeteJson, echapperHtml } from "./api.js";
 import { chargerEntete } from "./entete.js";
-import { titreOffre, formaterBudget } from "./format.js";
+import { titreOffre, formaterBudget, formaterDate } from "./format.js";
 
 const liste = document.querySelector("#liste-offres");
 const messageErreur = document.querySelector("#message-erreur");
-
-function formaterDate(dateSql) {
-  return new Date(dateSql.replace(" ", "T")).toLocaleDateString("fr-FR");
-}
 
 function carteOffre(offre) {
   const action = offre.deja_postule

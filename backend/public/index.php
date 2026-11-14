@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../src/controllers/auth.php';
 require_once __DIR__ . '/../src/controllers/parent.php';
+require_once __DIR__ . '/../src/controllers/admin.php';
 
 session_start([
     'cookie_httponly' => true,
@@ -47,6 +48,11 @@ try {
 
         'GET /api/enseignant/offres' => listerOffresDisponibles(),
         'POST /api/candidatures'     => postuler(),
+
+        'GET /api/admin/offres'        => listerOffresAAttribuer(),
+        'GET /api/admin/candidats'     => listerCandidats(),
+        'POST /api/admin/attributions' => attribuerOffre(),
+        'GET /api/admin/attributions'  => listerAttributions(),
         default             => repondreJson(['erreur' => 'Route introuvable'], 404),
     };
 } catch (Throwable $e) {

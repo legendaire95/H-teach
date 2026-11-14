@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>H-teach – Offres à attribuer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="module" src="../js/espace-admin.js"></script>
+  </head>
+  <body>
+    <header id="entete"></header>
+
+    <main class="page">
+      <!-- Écran 17 : offres à attribuer -->
+      <section id="vue-offres" class="formulaire formulaire-large">
+        <h1>Offres à attribuer</h1>
+        <p class="sous-titre">Offres mises sur le marché par les parents, en attente d'un enseignant.</p>
+
+        <div class="carte conteneur-tableau">
+          <table class="tableau">
+            <thead>
+              <tr>
+                <th>Offre</th>
+                <th>Parent</th>
+                <th>Localisation</th>
+                <th>Budget</th>
+                <th>Candidatures</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="corps-offres"></tbody>
+          </table>
+        </div>
+
+        <div id="vide-offres" class="etat-vide" hidden>
+          <div class="icone">∅</div>
+          <h2>Aucune offre en attente d'attribution</h2>
+        </div>
+      </section>
+
+      <!-- Écran 18 : comparer les candidats d'une offre -->
+      <section id="vue-candidats" class="formulaire formulaire-large" hidden>
+        <button type="button" id="bouton-retour" class="lien-retour">← Retour aux offres</button>
+        <h1 id="titre-offre"></h1>
+        <p id="infos-offre" class="sous-titre"></p>
+
+        <div class="regle">
+          <span class="nom-utilisateur">Règle de sélection</span>
+          <div class="segments">
+            <button type="button" class="segment actif" data-regle="premier_arrive">
+              Premier arrivé, premier servi
+            </button>
+            <button type="button" class="segment" data-regle="experience">Expérience</button>
+            <button type="button" class="segment" data-regle="politique">
+              Politique de l'entreprise
+            </button>
+          </div>
+        </div>
+        <p id="aide-regle" class="sous-titre"></p>
+
+        <p id="message-erreur" class="message-erreur" hidden></p>
+
+        <div class="carte conteneur-tableau">
+          <table class="tableau">
+            <thead>
+              <tr>
+                <th>Enseignant</th>
+                <th>Expérience</th>
+                <th>Niveau d'études</th>
+                <th>Date de candidature</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="corps-candidats"></tbody>
+          </table>
+        </div>
+
+        <div id="vide-candidats" class="etat-vide" hidden>
+          <h2>Aucun enseignant n'a encore postulé à cette offre</h2>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
