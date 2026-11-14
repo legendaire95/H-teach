@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>H-teach – Bienvenue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="module" src="../js/bienvenue-parent.js"></script>
+  </head>
+  <body>
+    <header id="entete"></header>
+
+    <!-- Écran 05 : accueil après inscription -->
+    <main class="page">
+      <h1 id="titre-bienvenue">Bienvenue !</h1>
+      <p class="sous-titre">Trouvez un répétiteur pour vos enfants en trois étapes.</p>
+
+      <div class="cartes-3">
+        <article class="carte carte-etape">
+          <div class="icone-etape">1</div>
+          <h3>Créez une offre</h3>
+          <p>Niveau de l'élève, matières, localisation et budget.</p>
+        </article>
+        <article class="carte carte-etape">
+          <div class="icone-etape">2</div>
+          <h3>La structure sélectionne</h3>
+          <p>Elle compare les enseignants qui ont postulé et retient le meilleur profil.</p>
+        </article>
+        <article class="carte carte-etape">
+          <div class="icone-etape">3</div>
+          <h3>Suivez vos enfants</h3>
+          <p>Retrouvez vos répétiteurs dans l'onglet « Mes répétiteurs ».</p>
+        </article>
+      </div>
+    </main>
+
+    <!-- Écrans 06 et 07 : tutoriel rapide -->
+    <div class="voile" id="tutoriel" role="dialog" aria-modal="true" aria-labelledby="titre-tuto">
+      <section class="carte fenetre">
+        <p class="etiquette-tuto" id="compteur-tuto">Tutoriel rapide · étape 1/2</p>
+        <h2 id="titre-tuto"></h2>
+        <p id="texte-tuto"></p>
+        <div class="points" id="points-tuto"></div>
+        <div class="actions">
+          <button type="button" id="bouton-precedent" class="btn btn-secondaire">Précédent</button>
+          <button type="button" id="bouton-tuto" class="btn btn-principal">Suivant</button>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -459,3 +459,78 @@ a {
     padding: 12px 8px;
   }
 }
+
+/* --- Accueil du parent : les 3 étapes (écran 05) --- */
+.cartes-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.carte-etape {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.icone-etape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--orange-clair);
+  color: var(--orange);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* --- Tutoriel rapide (écrans 06 et 07) --- */
+.voile {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 27, 61, 0.45);
+}
+
+.fenetre {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.etiquette-tuto {
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.points {
+  display: flex;
+  gap: 8px;
+}
+
+.points span {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--bordure);
+}
+
+.points span.actif {
+  width: 24px;
+  background: var(--bleu);
+}
+
+@media (max-width: 900px) {
+  .cartes-3 {
+    grid-template-columns: 1fr;
+  }
+}

@@ -70,7 +70,9 @@ formulaire.addEventListener("submit", async (evenement) => {
       body: JSON.stringify({ email: donnees.email, mot_de_passe: donnees.mot_de_passe }),
     });
 
-    window.location.href = PAGE_PAR_ROLE[utilisateur.role];
+    // Un nouveau parent découvre d'abord l'accueil et le tutoriel (écrans 05 à 07)
+    window.location.href =
+      utilisateur.role === "parent" ? "bienvenue-parent.html" : PAGE_PAR_ROLE[utilisateur.role];
   } catch (erreur) {
     afficherErreurs(erreur.details);
     messageErreur.textContent = erreur.message;
