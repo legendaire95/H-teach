@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>H-teach – Créer mon compte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="module" src="../js/inscription.js"></script>
+  </head>
+  <body>
+    <main class="centre">
+      <form id="formulaire-inscription" class="carte formulaire" novalidate>
+        <div class="onglets-formulaire" role="tablist">
+          <button
+            type="button"
+            class="onglet actif"
+            data-role="parent"
+            role="tab"
+            aria-selected="true"
+          >
+            <span class="numero">1</span> Client (parent)
+          </button>
+          <button
+            type="button"
+            class="onglet"
+            data-role="enseignant"
+            role="tab"
+            aria-selected="false"
+          >
+            <span class="numero">2</span> Professeur
+          </button>
+        </div>
+
+        <h2>Créer mon compte</h2>
+
+        <input type="hidden" name="role" value="parent" />
+
+        <!-- Onglet 1 : parent -->
+        <fieldset class="groupe" data-pour="parent">
+          <div class="champ">
+            <label for="nom">Nom</label>
+            <input id="nom" name="nom" type="text" placeholder="Votre nom" required />
+            <span class="erreur-champ" data-erreur="nom"></span>
+          </div>
+          <div class="champ">
+            <label for="prenom">Prénom</label>
+            <input id="prenom" name="prenom" type="text" placeholder="Votre prénom" />
+          </div>
+        </fieldset>
+
+        <!-- Onglet 2 : professeur -->
+        <fieldset class="groupe" data-pour="enseignant" hidden disabled>
+          <div class="champ">
+            <label for="nom_complet">Nom et prénom</label>
+            <input
+              id="nom_complet"
+              name="nom_complet"
+              type="text"
+              placeholder="Votre nom complet"
+              required
+            />
+            <span class="erreur-champ" data-erreur="nom"></span>
+          </div>
+        </fieldset>
+
+        <!-- Champs communs -->
+        <div class="champ">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="exemple@mail.com"
+            autocomplete="email"
+            required
+          />
+          <span class="erreur-champ" data-erreur="email"></span>
+        </div>
+        <div class="champ">
+          <label for="mot_de_passe">Mot de passe (8 caractères minimum)</label>
+          <input
+            id="mot_de_passe"
+            name="mot_de_passe"
+            type="password"
+            autocomplete="new-password"
+            required
+          />
+          <span class="erreur-champ" data-erreur="mot_de_passe"></span>
+        </div>
+
+        <!-- Onglet 2 : informations professionnelles -->
+        <fieldset class="groupe" data-pour="enseignant" hidden disabled>
+          <legend>Années d'expérience</legend>
+          <div class="grille-choix">
+            <label class="choix"
+              ><input type="radio" name="experience" value="moins_1_an" required /><span
+                >Moins d'1 an</span
+              ></label
+            >
+            <label class="choix"
+              ><input type="radio" name="experience" value="1_3_ans" /><span>1 à 3 ans</span></label
+            >
+            <label class="choix"
+              ><input type="radio" name="experience" value="3_5_ans" /><span>3 à 5 ans</span></label
+            >
+            <label class="choix"
+              ><input type="radio" name="experience" value="plus_5_ans" /><span
+                >Plus de 5 ans</span
+              ></label
+            >
+          </div>
+          <span class="erreur-champ" data-erreur="experience"></span>
+
+          <legend>Niveau d'études</legend>
+          <div class="grille-choix">
+            <label class="choix"
+              ><input type="radio" name="niveau_etudes" value="bac" required /><span
+                >Bac</span
+              ></label
+            >
+            <label class="choix"
+              ><input type="radio" name="niveau_etudes" value="licence" /><span
+                >Licence</span
+              ></label
+            >
+            <label class="choix"
+              ><input type="radio" name="niveau_etudes" value="master" /><span>Master</span></label
+            >
+            <label class="choix"
+              ><input type="radio" name="niveau_etudes" value="doctorat" /><span
+                >Doctorat</span
+              ></label
+            >
+          </div>
+          <span class="erreur-champ" data-erreur="niveau_etudes"></span>
+        </fieldset>
+
+        <p id="message-erreur" class="message-erreur" hidden></p>
+
+        <div class="actions">
+          <a href="index.html" class="btn btn-secondaire">Retour</a>
+          <button type="submit" class="btn btn-principal">S'inscrire</button>
+        </div>
+
+        <p>Déjà inscrit ? <a href="connexion.html">Se connecter</a></p>
+      </form>
+    </main>
+  </body>
+</html>

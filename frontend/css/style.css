@@ -194,3 +194,116 @@ a {
 [hidden] {
   display: none !important;
 }
+
+/* --- Onglets du formulaire (Client / Professeur) --- */
+.onglets-formulaire {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: #f0f3f9;
+  border-radius: var(--rayon);
+}
+
+.onglet {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--gris);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.onglet.actif {
+  background: var(--blanc);
+  color: var(--bleu);
+  box-shadow: 0 2px 6px rgba(15, 27, 61, 0.08);
+}
+
+.numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bordure-claire);
+  font-size: 12px;
+}
+
+.onglet.actif .numero {
+  background: var(--bleu);
+  color: var(--blanc);
+}
+
+/* --- Groupes de champs --- */
+.groupe {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--bordure-claire);
+  border-radius: var(--rayon);
+  background: var(--fond);
+}
+
+.groupe legend {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0 4px;
+}
+
+/* --- Grille de choix (cases façon "boutons") --- */
+.grille-choix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.choix {
+  position: relative;
+}
+
+.choix input {
+  position: absolute;
+  opacity: 0;
+}
+
+.choix span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 4px 8px;
+  border: 1px solid var(--bordure);
+  border-radius: 8px;
+  background: var(--blanc);
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.choix input:checked + span {
+  background: var(--bleu-clair);
+  border-color: var(--bleu);
+  color: var(--bleu);
+  font-weight: 600;
+}
+
+.choix input:focus-visible + span {
+  outline: 2px solid var(--bleu);
+}
+
+/* --- Boutons en bas de formulaire --- */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
