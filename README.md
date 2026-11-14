@@ -247,74 +247,19 @@ Toutes les routes renvoient du JSON. Les routes protégées vérifient la sessio
 ## Documentation
 
 - **Fiches ADR (choix techniques) :** [docs/adr](docs/adr/README.md)
-- **Wireframes et maquettes (Figma) :** [fichier Figma du projet H-teach](https://www.figma.com/design/pQJCYlPN5M75bDJOEK8H0P) (page 1 : wireframes, page 2 : maquettes)
+- **Wireframes et maquettes (Figma) :** [H-teach — Wireframes & Maquettes](https://www.figma.com/design/da1gr3DCQrb3DFyQrYOxlk) (page 1 : wireframes, page 2 : maquettes)
 
-## Améliorations et perspectives futures pour H-teach
+## Améliorations et perspectives pour H-teach
 
 <!-- Section à compléter par l'équipe avant le rendu final. -->
 
 ### Améliorations apportées pendant le projet
 
-- A1. Niveaux scolaires : de CP1 à Terminale (CP1, CP2, CE1, CE2, CM1, CM2, 6e, 5e, 4e, 3e,
-    Seconde, Première, Terminale). Le niveau « Université » a été retiré.
-    Écran 14 : la grille « Niveaux enseignés » liste ces 13 niveaux (cases à cocher).
-A2. Série du second cycle : A, B, C, D, E, F ou G, demandée uniquement pour la Seconde,
-    la Première et la Terminale (écran 09 : champ « Série » ; écrans 12, 16 à 19 : « Terminale D »,
-    « Seconde C »). Côté serveur, la série est obligatoire pour ces niveaux et ignorée pour les autres.
-A3. Formulaire Professeur (écran 04) : « Années d'expérience » et « Niveau d'études » sont des
-    choix uniques (boutons radio ronds) et non des cases à cocher : un enseignant n'a qu'une valeur
-    pour chacun. Le libellé de l'écran 04 a été ajusté.
+- …
 
-Ajouts faits pendant le développement (non dessinés dans les maquettes)
-A4. Après l'inscription, l'utilisateur est connecté automatiquement (pas besoin de repasser par
-    l'écran 02). Le parent est envoyé vers l'accueil et le tutoriel (écrans 05 à 07) ; ce tutoriel
-    s'affiche après l'inscription, pas à chaque connexion.
-A5. Espace parent : en plus de « Mes répétiteurs », une section « Mes offres en attente » montre
-    les offres créées mais pas encore attribuées (badge « En attente »).
-A6. Bouton « Contacter » (parent → répétiteur) et « Contacter le parent » (enseignant → parent) :
-    lien e-mail (mailto). Aucune messagerie interne n'a été développée.
-A7. Espace enseignant : bouton « Modifier mon profil » pour revenir à l'écran 14 et changer ses
-    matières et niveaux.
-A8. Offres disponibles (écran 16) : seules les offres qui correspondent à au moins une matière ET au
-    niveau enseignés par l'enseignant s'affichent ; une offre à laquelle il a déjà postulé est signalée.
-A9. Bouton « Détails » (écran 16) : déplie les informations de l'offre sous la carte (bouton
-    « Masquer » pour replier), au lieu d'ouvrir un écran séparé.
-A10. Espace structure (écran 18) :
-     - « Premier arrivé » et « Expérience » trient les candidats et mettent en avant le premier
-       (ligne suggérée) ;
-     - « Politique de l'entreprise » : interprétation retenue = aucun tri automatique (ordre
-       d'arrivée affiché), l'administrateur choisit selon la politique de l'agence ;
-     - une confirmation est demandée avant d'attribuer, car la décision est définitive.
-A11. Comptes administrateur : pas d'inscription publique (conforme à C2). Ils sont créés avec le
-     script backend/scripts/creer-admin.php ou fournis par les données de démonstration.
-A12. Données de démonstration (database/seed.sql) : 1 administrateur, 3 parents, 3 enseignants,
-     3 offres, 5 candidatures et 1 attribution, reprenant les personnes et offres fictives des
-     maquettes (voir B14 et C4). Mots de passe de démo indiqués dans le README.
-A13. Encodage : les scripts SQL commencent par « SET NAMES utf8mb4; » pour que les accents
-     s'importent correctement, même depuis la ligne de commande.
-A14. Sécurité et qualité (non visibles dans les maquettes) : mots de passe hachés, requêtes
-     préparées, contrôle du rôle sur chaque route, échappement HTML côté client, linters
-     ESLint / Prettier / PHP_CodeSniffer (PSR-12). Détail dans le README.
+### Perspectives
 
-     B. LIVRABLE 2 — AJOUT DES FICHES ADR (VERSION 3)
----------------------------------------------------------------------
-B1. Le Livrable 2 intègre désormais la section 4 « Architecture : fiches ADR » (ADR 001 : stack
-    front-end et back-end ; ADR 002 : base de données), reprise des fiches rédigées par
-    Gadedjisso Mickaël et Souanga David (docs/adr/ du dépôt), en version condensée.
-    Le titre du livrable devient « Conception UX/UI & Architecture », comme la phase 2 du TD.
-B2. Correction factuelle dans l'ADR 001 : « équipe de 3 à 4 étudiants » remplacé par « équipe de
-    5 étudiants » (tableau Équipe du README). Aucun autre changement de fond dans les fiches.
-
-
-### Perspectives futures
-
-- H-teach est destinée à s'étendre sur une échelle plus large au fil du temps. Nous y ajouterons peu à peu de nouvelles fonctionnalités afin de rendre notre solution plus instructive et adaptée aux réalités des entreprises sur le terrain. pour cela, nous prévoyons ces différentes perspectives:
-
-- 1- Ajout d'une nouvelle entité "Structure" afin de scaler l'application et prendre en compte plusieurs structures de placement d'enseignants et augmenter la conccurence.
-- 2- Organisation de compétitions inter-entreprise avec possibilités de gagner des lots et des prix comme nommination 'meilleure' entreprise du mois...
-- 3- Intégration d'un modèle de Machine Learning afin d'analyser et prédire les différentes offres qui pourrait circuler sur le marché et donner des conseils d'amélioration de profils au enseignants afin d'être plus compétitifs sur le marché.
-- 4- Autres fonctionnalités à venir...
-
+- …
 
 ## Équipe
 
