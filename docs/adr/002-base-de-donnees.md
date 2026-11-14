@@ -37,10 +37,14 @@ Une seule agence utilise la plateforme.
 | Table | Contenu principal | Liens (clés étrangères) |
 |---|---|---|
 | `utilisateurs` | nom, prénom, email (unique), mot de passe chiffré, rôle (`parent`, `enseignant`, `admin`) ; pour les enseignants : années d'expérience, niveau d'études | — |
-| `matieres_enseignant` / `niveaux_enseignant` | matières et niveaux renseignés par l'enseignant (écran 14) | → `utilisateurs` |
-| `offres` | niveau de l'élève, matières, ville, commune, budget minimum et maximum, statut (`ouverte`, `attribuee`, `annulee`), date de création | → `utilisateurs` (le parent) |
+| `matieres` / `niveaux` | référentiels : listes des matières et des niveaux (du CP1 à la Terminale, colonne `ordre` pour le tri scolaire) | — |
+| `matieres_enseignant` / `niveaux_enseignant` | matières et niveaux renseignés par l'enseignant (écran 14) | → `utilisateurs`, → `matieres` / `niveaux` |
+| `offres` | niveau de l'élève, série (A à G, uniquement pour Seconde, Première et Terminale), ville, commune, budget minimum et maximum, statut (`ouverte`, `attribuee`, `annulee`), date de création | → `utilisateurs` (le parent), → `niveaux` |
+| `offre_matieres` | matières demandées dans l'offre | → `offres`, → `matieres` |
 | `candidatures` | date de candidature | → `offres`, → `utilisateurs` (l'enseignant) ; couple (offre, enseignant) **unique** |
 | `attributions` | règle appliquée, date d'attribution | → `offres` (**unique** : une seule attribution par offre), → `candidatures` |
+
+Les niveaux vont du CP1 à la Terminale, car les agences ne placent pas d’enseignants à l’université, et le primaire distingue CP1 et CP2. La série est stockée dans l’offre, car elle décrit le besoin de l’élève.
 
 Les règles d'intégrité du contexte sont garanties **par la base elle-même**, grâce aux clés étrangères et aux contraintes d'unicité, et pas seulement par le code PHP.
 
