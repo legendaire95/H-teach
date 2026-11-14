@@ -25,14 +25,14 @@ Côté serveur, l'application doit :
 
 Contraintes du projet :
 
-- une **équipe de 3 à 4 étudiants** qui maîtrise HTML, CSS, JavaScript et PHP, vus en cours et pratiqués en TP (application « bibliothèque » avec `fetch` et un serveur PHP) ;
+- une **équipe de 5 étudiants** qui maîtrise HTML, CSS, JavaScript et PHP, vus en cours et pratiqués en TP (application « bibliothèque » avec `fetch` et un serveur PHP) ;
 - un **délai court** pour livrer une application complète et fonctionnelle ;
 - un **budget nul** : uniquement des outils gratuits.
 
 ## 2. Décision
 
 - **Front-end :** HTML, CSS et JavaScript **sans framework** (« vanilla »). Les échanges avec le serveur se font avec l'API `fetch`, au format JSON.
-- **Back-end :** **PHP**, sans framework, organisé en API : un point d'entrée unique (`backend/public/index.php`), des contrôleurs (logique métier) et des modèles (accès à la base).
+- **Back-end :** **PHP**, sans framework, organisé en API : un point d'entrée unique (`backend/public/index.php`) qui joue le rôle de routeur, et des contrôleurs regroupés par profil (`auth`, `parent`, `enseignant`, `admin`) qui contiennent la logique métier et les requêtes SQL préparées (PDO).
 
 ## 3. Justification
 

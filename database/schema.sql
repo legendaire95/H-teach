@@ -4,6 +4,9 @@
 -- Attention : relancer ce script supprime et recrée les tables.
 -- =============================================================
 
+-- Les données sont envoyées en UTF-8 (accents corrects, même depuis la ligne de commande)
+SET NAMES utf8mb4;
+
 CREATE DATABASE IF NOT EXISTS hteach
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;

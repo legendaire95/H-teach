@@ -2,15 +2,6 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../src/controllers/auth.php';
-require_once __DIR__ . '/../src/controllers/parent.php';
-require_once __DIR__ . '/../src/controllers/admin.php';
-
-session_start([
-    'cookie_httponly' => true,
-    'cookie_samesite' => 'Lax',
-]);
-
 $chemin = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // Ce n'est pas un appel à l'API : le serveur PHP envoie le fichier du front-end
@@ -25,36 +16,49 @@ if (!str_starts_with($chemin, '/api/')) {
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../src/http.php';
 require_once __DIR__ . '/../src/controllers/referentiels.php';
+require_once __DIR__ . '/../src/controllers/auth.php';
+require_once __DIR__ . '/../src/controllers/parent.php';
 require_once __DIR__ . '/../src/controllers/enseignant.php';
+require_once __DIR__ . '/../src/controllers/admin.php';
+
+session_start([
+    'cookie_httponly' => true,
+    'cookie_samesite' => 'Lax',
+]);
 
 $route = $_SERVER['REQUEST_METHOD'] . ' ' . $chemin;
 
 try {
     match ($route) {
+        // Référentiels (listes de choix)
         'GET /api/niveaux'  => listerNiveaux(),
         'GET /api/matieres' => listerMatieres(),
-        'POST /api/inscription' => inscrire(),
 
+        // Comptes et session
+        'POST /api/inscription' => inscrire(),
         'POST /api/connexion'   => connecter(),
         'GET /api/moi'          => moi(),
         'POST /api/deconnexion' => deconnecter(),
 
+        // Parent
         'GET /api/parent/offres' => listerOffresParent(),
-        'POST /api/offres' => creerOffre(),
+        'POST /api/offres'       => creerOffre(),
 
+        // Enseignant
         'GET /api/enseignant/profil'    => lireProfilEnseignant(),
         'PUT /api/enseignant/profil'    => enregistrerProfilEnseignant(),
         'GET /api/enseignant/etudiants' => listerEtudiants(),
+        'GET /api/enseignant/offres'    => listerOffresDisponibles(),
+        'POST /api/candidatures'        => postuler(),
 
-        'GET /api/enseignant/offres' => listerOffresDisponibles(),
-        'POST /api/candidatures'     => postuler(),
-
+        // Structure (administrateur)
         'GET /api/admin/offres'        => listerOffresAAttribuer(),
         'GET /api/admin/candidats'     => listerCandidats(),
         'POST /api/admin/attributions' => attribuerOffre(),
         'GET /api/admin/attributions'  => listerAttributions(),
-        default             => repondreJson(['erreur' => 'Route introuvable'], 404),
+
+        default => repondreJson(['erreur' => 'Route introuvable'], 404),
     };
-} catch (Throwable $e) {
+} catch (Throwable $erreur) {
     repondreJson(['erreur' => 'Erreur interne du serveur'], 500);
 }

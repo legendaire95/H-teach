@@ -10,8 +10,10 @@ import {
 } from "./format.js";
 
 const AIDE_REGLE = {
-  premier_arrive: "Les candidats sont classés du premier au dernier inscrit. Le premier est suggéré.",
-  experience: "Les candidats sont classés du plus expérimenté au moins expérimenté. Le premier est suggéré.",
+  premier_arrive:
+    "Les candidats sont classés du premier au dernier inscrit. Le premier est suggéré.",
+  experience:
+    "Les candidats sont classés du plus expérimenté au moins expérimenté. Le premier est suggéré.",
   politique: "Pas de classement automatique : retenez l'enseignant selon la politique de l'agence.",
 };
 

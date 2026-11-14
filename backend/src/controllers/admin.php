@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-/**
- * Règles de sélection de la note de cadrage, et l'ordre de tri SQL correspondant.
- * "politique" : pas de classement automatique, l'agence choisit selon sa propre politique.
- */
+// Règles de sélection de la note de cadrage, et l'ordre de tri SQL correspondant.
+// "politique" : pas de classement automatique, l'agence choisit selon sa propre politique.
 const REGLES_SELECTION = [
     'premier_arrive' => 'c.postule_le ASC',
     'experience'     => "FIELD(e.experience, 'plus_5_ans', '3_5_ans', '1_3_ans', 'moins_1_an'), c.postule_le ASC",

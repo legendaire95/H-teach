@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Crée un compte administrateur (la structure).
  * Usage : php backend/scripts/creer-admin.php "Nom" email motdepasse
  */
+
+declare(strict_types=1);
 
 require_once __DIR__ . '/../config/database.php';
 

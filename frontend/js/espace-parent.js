@@ -1,11 +1,9 @@
 import { requeteJson, echapperHtml } from "./api.js";
 import { chargerEntete } from "./entete.js";
-import { titreOffre, formaterBudget } from "./format.js";
-
-/** Décrit une offre en une ligne : "Mathématiques, Physique-Chimie — Terminale D". */
+import { titreOffre, formaterBudget, nomComplet } from "./format.js";
 
 function carteRepetiteur(offre) {
-  const enseignant = [offre.enseignant_prenom, offre.enseignant_nom].filter(Boolean).join(" ");
+  const enseignant = nomComplet(offre.enseignant_prenom, offre.enseignant_nom);
   return `
     <article class="carte carte-ligne">
       <div>
