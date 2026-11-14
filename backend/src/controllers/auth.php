@@ -84,3 +84,71 @@ function inscrire(): void
         'role'   => $role,
     ], 201);
 }
+
+/**
+ * POST /api/connexion : vérifie l'email et le mot de passe, puis ouvre la session.
+ */
+function connecter(): void
+{
+    $donnees = lireCorpsJson();
+    $email = strtolower(trim((string) ($donnees['email'] ?? '')));
+    $motDePasse = (string) ($donnees['mot_de_passe'] ?? '');
+
+    $requete = connexionBdd()->prepare(
+        'SELECT id, nom, prenom, email, mot_de_passe, role FROM utilisateurs WHERE email = ?'
+    );
+    $requete->execute([$email]);
+    $utilisateur = $requete->fetch();
+
+    if (!$utilisateur || !password_verify($motDePasse, $utilisateur['mot_de_passe'])) {
+        repondreJson(['erreur' => 'Email ou mot de passe incorrect.'], 401);
+        return;
+    }
+
+    unset($utilisateur['mot_de_passe']);
+    $utilisateur['id'] = (int) $utilisateur['id'];
+
+    session_regenerate_id(true);
+    $_SESSION['utilisateur'] = $utilisateur;
+
+    repondreJson($utilisateur);
+}
+
+/**
+ * GET /api/moi : renvoie l'utilisateur connecté (sert au front-end à savoir qui est connecté).
+ */
+function moi(): void
+{
+    repondreJson(exigerConnexion());
+}
+
+/**
+ * POST /api/deconnexion : ferme la session.
+ */
+function deconnecter(): void
+{
+    $_SESSION = [];
+    session_destroy();
+
+    repondreJson(['message' => 'Déconnexion réussie.']);
+}
+
+/**
+ * Renvoie l'utilisateur connecté. Si personne n'est connecté, ou si son rôle
+ * n'est pas autorisé, répond par une erreur et arrête le script.
+ */
+function exigerConnexion(string ...$rolesAutorises): array
+{
+    $utilisateur = $_SESSION['utilisateur'] ?? null;
+
+    if ($utilisateur === null) {
+        repondreJson(['erreur' => 'Vous devez être connecté.'], 401);
+        exit;
+    }
+    if ($rolesAutorises !== [] && !in_array($utilisateur['role'], $rolesAutorises, true)) {
+        repondreJson(['erreur' => "Vous n'avez pas accès à cette action."], 403);
+        exit;
+    }
+
+    return $utilisateur;
+}
