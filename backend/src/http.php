@@ -11,3 +11,13 @@ function repondreJson(mixed $donnees, int $code = 200): void
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($donnees, JSON_UNESCAPED_UNICODE);
 }
+
+/**
+ * Lit le corps de la requête (envoyé en JSON par fetch) et le renvoie sous forme de tableau.
+ */
+function lireCorpsJson(): array
+{
+    $donnees = json_decode(file_get_contents('php://input') ?: '', true);
+
+    return is_array($donnees) ? $donnees : [];
+}

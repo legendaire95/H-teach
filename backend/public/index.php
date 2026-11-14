@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/../src/controllers/auth.php';
+
 $chemin = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // Ce n'est pas un appel à l'API : le serveur PHP envoie le fichier du front-end
@@ -23,6 +25,7 @@ try {
     match ($route) {
         'GET /api/niveaux'  => listerNiveaux(),
         'GET /api/matieres' => listerMatieres(),
+        'POST /api/inscription' => inscrire(),
         default             => repondreJson(['erreur' => 'Route introuvable'], 404),
     };
 } catch (Throwable $e) {
