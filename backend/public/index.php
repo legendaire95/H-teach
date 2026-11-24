@@ -15,20 +15,18 @@ if (!str_starts_with($chemin, '/api/')) {
 
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../src/http.php';
+require_once __DIR__ . '/../src/session.php';
 require_once __DIR__ . '/../src/controllers/referentiels.php';
 require_once __DIR__ . '/../src/controllers/auth.php';
 require_once __DIR__ . '/../src/controllers/parent.php';
 require_once __DIR__ . '/../src/controllers/enseignant.php';
 require_once __DIR__ . '/../src/controllers/admin.php';
 
-session_start([
-    'cookie_httponly' => true,
-    'cookie_samesite' => 'Lax',
-]);
-
 $route = $_SERVER['REQUEST_METHOD'] . ' ' . $chemin;
 
 try {
+    demarrerSession();
+
     match ($route) {
         // Référentiels (listes de choix)
         'GET /api/niveaux'  => listerNiveaux(),
@@ -60,5 +58,7 @@ try {
         default => repondreJson(['erreur' => 'Route introuvable'], 404),
     };
 } catch (Throwable $erreur) {
+    // Visible dans les journaux (logs) de Vercel en cas de problème
+    error_log('H-teach : ' . $erreur->getMessage());
     repondreJson(['erreur' => 'Erreur interne du serveur'], 500);
 }

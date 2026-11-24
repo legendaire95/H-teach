@@ -4,6 +4,7 @@
 
   <!-- Dossier à analyser -->
   <file>backend</file>
+  <file>api</file>
 
   <!-- Analyser uniquement les fichiers .php, afficher en couleur et montrer la progression -->
   <arg name="extensions" value="php"/>

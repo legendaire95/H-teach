@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS matieres_enseignant;
 DROP TABLE IF EXISTS niveaux;
 DROP TABLE IF EXISTS matieres;
 DROP TABLE IF EXISTS utilisateurs;
+DROP TABLE IF EXISTS sessions;
 
 -- -------------------------------------------------------------
 -- Utilisateurs : parents, enseignants et administrateurs
@@ -126,6 +127,15 @@ CREATE TABLE attributions (
   attribue_le     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (offre_id)       REFERENCES offres(id) ON DELETE CASCADE,
   FOREIGN KEY (candidature_id) REFERENCES candidatures(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- -------------------------------------------------------------
+-- Sessions de connexion (nécessaire pour l'hébergement sur Vercel)
+-- -------------------------------------------------------------
+CREATE TABLE sessions (
+  id       VARCHAR(128) PRIMARY KEY,
+  donnees  TEXT NOT NULL,
+  maj_le   INT UNSIGNED NOT NULL                 -- horodatage Unix de la dernière activité
 ) ENGINE=InnoDB;
 
 -- -------------------------------------------------------------

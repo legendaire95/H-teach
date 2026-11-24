@@ -8,8 +8,9 @@ declare(strict_types=1);
  */
 function chargerEnv(string $chemin): void
 {
+    // Sur Vercel il n'y a pas de fichier .env : les variables sont définies dans le tableau de bord
     if (!is_file($chemin)) {
-        throw new RuntimeException("Fichier .env introuvable : $chemin");
+        return;
     }
 
     $lignes = file($chemin, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -24,6 +25,21 @@ function chargerEnv(string $chemin): void
         [$cle, $valeur] = array_pad(explode('=', $ligne, 2), 2, '');
         $_ENV[trim($cle)] = trim($valeur);
     }
+}
+
+/**
+ * Renvoie la valeur d'une variable de configuration :
+ * d'abord le fichier .env (en local), sinon les variables d'environnement du serveur (Vercel).
+ */
+function config(string $cle, string $defaut = ''): string
+{
+    if (isset($_ENV[$cle]) && $_ENV[$cle] !== '') {
+        return $_ENV[$cle];
+    }
+
+    $valeur = getenv($cle);
+
+    return $valeur === false || $valeur === '' ? $defaut : $valeur;
 }
 
 /**
@@ -42,16 +58,24 @@ function connexionBdd(): PDO
 
     $dsn = sprintf(
         'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
-        $_ENV['DB_HOST'] ?? 'localhost',
-        $_ENV['DB_PORT'] ?? '3306',
-        $_ENV['DB_NAME'] ?? 'hteach'
+        config('DB_HOST', 'localhost'),
+        config('DB_PORT', '3306'),
+        config('DB_NAME', 'hteach')
     );
 
-    $pdo = new PDO($dsn, $_ENV['DB_USER'] ?? 'root', $_ENV['DB_PASSWORD'] ?? '', [
+    $options = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES   => false,
-    ]);
+    ];
+
+    // Base en ligne (TiDB Cloud) : la connexion doit être chiffrée (SSL)
+    if (config('DB_SSL') === 'true') {
+        $options[PDO::MYSQL_ATTR_SSL_CA] = config('DB_SSL_CA', '/etc/pki/tls/certs/ca-bundle.crt');
+        $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
+    }
+
+    $pdo = new PDO($dsn, config('DB_USER', 'root'), config('DB_PASSWORD'), $options);
 
     return $pdo;
 }
