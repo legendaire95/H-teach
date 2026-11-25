@@ -39,7 +39,11 @@ function config(string $cle, string $defaut = ''): string
 
     $valeur = getenv($cle);
 
-    return $valeur === false || $valeur === '' ? $defaut : $valeur;
+    if ($valeur === false || $valeur === '') {
+        $valeur = $_SERVER[$cle] ?? '';
+    }
+
+    return $valeur === '' ? $defaut : (string) $valeur;
 }
 
 /**
@@ -55,6 +59,11 @@ function connexionBdd(): PDO
     }
 
     chargerEnv(__DIR__ . '/../../.env');
+
+    // Sur Vercel, sans DB_HOST, PDO chercherait une base locale qui n'existe pas
+    if (config('DB_HOST') === '' && getenv('VERCEL') !== false) {
+        throw new RuntimeException('Variable DB_HOST absente : vérifier les variables de Vercel puis redéployer');
+    }
 
     $dsn = sprintf(
         'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
